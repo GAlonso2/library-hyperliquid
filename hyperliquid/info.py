@@ -15,7 +15,7 @@ from hyperliquid.utils.types import (
 from utils.websocket_manager import WebsocketManager
 
 
-class Info(API):
+class HyperliquidInfo(API):
     def __init__(
         self,
         base_url: Optional[str] = None,
