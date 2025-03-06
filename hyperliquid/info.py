@@ -22,12 +22,14 @@ class HyperliquidInfo(API):
         skip_ws: Optional[bool] = False,
         meta: Optional[Meta] = None,
         spot_meta: Optional[SpotMeta] = None,
+        on_message_function = None,
     ):
         super().__init__(base_url)
-        self.ws_manager: Optional[WebsocketManager] = None
+
         if not skip_ws:
-            self.ws_manager = WebsocketManager(self.base_url)
-            self.ws_manager.start()
+            self.ws_manager = WebsocketManager(
+                base_url=self.base_url,
+                process_message_function=on_message_function)
         if meta is None:
             meta = self.meta()
 
